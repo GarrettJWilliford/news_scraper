@@ -2,7 +2,20 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 import time
 import os
-from scp import remove_html
+
+
+def remove_html(inp):
+    rems = ['<strong>', '</strong>', '<em>', '</em>', '<sup>', '</sup>', '<br>']
+    if '<span' in inp:
+        return False
+    if '<a href' in inp:
+        return False
+    if '<iframe' in inp:
+        return False
+    for r in rems:
+        inp = re.sub(r, '', inp)
+    return inp
+
 
 def driver_init():
     fop = Options()
@@ -27,6 +40,7 @@ def bbc(driver):
             print('<<!FAILED_TO_FIND_LINKS!>>')
             print('<<!RESTARTING_DRIVER!>>')
             time.sleep(2)
+            continue
         print('<<<<<<<<<<<<<<<<<<<<NEWS>>>>>>>>>>>>>>>>>>>>')
         for l in links:
             print(str(links.index(l)) + '| ' +  l.get_attribute('innerHTML').strip())
