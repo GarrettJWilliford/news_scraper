@@ -6,6 +6,9 @@ but other then that it should work fine, its using the bbc website to get headli
 
 
 <<<<<<<<<<|_SYNTAX_|>>>>>>>>>>
+
 import news
+
 news.bbc(news.driver_init())
+
 <<<<<<<<<<<<<<<>>>>>>>>>>>>>>>
